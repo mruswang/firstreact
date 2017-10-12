@@ -13,3 +13,29 @@
 .footer{
     text-align: center;
 }
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+.leftContainer{
+    width: 400px;
+    float: left;
+}
+.carousel{
+    width: 400px;
+    float: left;
+}
+.carousel img{
+    width: 100%;
+    height:auto;
+}
+.imgblock{
+    float: left;
+}

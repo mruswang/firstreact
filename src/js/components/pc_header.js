@@ -1,9 +1,11 @@
 import React from 'react';
 import { Row, Col,Menu, Icon,Tabs,message,Form,Input,Button,Checkbox,Modal } from 'antd';
+
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+
 
 class PcHeader extends React.Component {
     constructor() {
@@ -15,15 +17,19 @@ class PcHeader extends React.Component {
             hasLogined: false,
             userNickName: '',
             userid: 0
+
         };
     }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         const userShow = this.state.hasLogined ?
             <Menu.Item key="logout" class="register">
-                <Button type="primary">{this.state.userNickName}</Button>
-                <Button type="dashed">个人中心</Button>
-                <Button type="danger">退出</Button>
+                <Button type="primary" htmlType="buttton">{this.state.userNickName}</Button>
+                <Link tatget="_blank">
+                    <Button type="dashed" htmlType="buttton">个人中心</Button>
+                </Link>
+                <Button type="danger" htmlType="buttton">退出</Button>
             </Menu.Item>
             :
             <Menu.Item key="register" class="register" >
@@ -73,6 +79,7 @@ class PcHeader extends React.Component {
                             visible={this.state.modalVisble}
                             onOk={()=>this.setModalVisible(false)}
                             onCancel={()=>this.setModalVisible(false)}
+                            okText="关闭"
                         >
                             <Tabs type="card">
                                 <TabPane tab="注册" key="2">
@@ -86,14 +93,18 @@ class PcHeader extends React.Component {
                                         </FormItem>
                                         <FormItem>
                                             {getFieldDecorator('password', {
-                                                rules: [{ required: true, message: 'Please input your Password!' }],
+                                                rules: [{ required: true, message: 'Please input your Password!' }, {
+                                                    validator: this.checkConfirm,
+                                                }],
                                             })(
                                                 <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="请输入你的密码" />
                                             )}
                                         </FormItem>
                                         <FormItem>
                                             {getFieldDecorator('re_password', {
-                                                rules: [{ required: true, message: 'Please input your Password!' }],
+                                                rules: [{ required: true, message: 'Please input your Password!' },{
+                                                    validator: this.checkPassword,
+                                                }],
                                             })(
                                                 <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="请确认你的密码" />
                                             )}
@@ -130,7 +141,14 @@ class PcHeader extends React.Component {
                 console.log('Received values of form: ', values);
             }
         });
+        var formdata = this.props.form.getFieldsValue();
+        console.log(formdata)
+        if(formdata.password != formdata.re_password){
+            console.log('Received values of form: ', '两次输入密码不一致');
+        }
+
     }
+
 }
 PcHeader.defaultProps = {
 };
