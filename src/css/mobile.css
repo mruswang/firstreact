@@ -25,3 +25,32 @@ html{
     margin-top: 0.3rem;
     color: #2db7f5;
 }
+.item{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.list-img{
+    margin-right: 10px;
+    flex: 0 0 120px;
+}
+.list-img img{
+    width:120px;
+    height: auto;
+}
+
+.list-text{
+    flex:1;
+}
+.list-text-title span{
+    font-size: 0.35rem;
+    color: #555;
+}
+.list-text-info span:first-child{
+    font-size: 0.25rem;
+    color: red;
+    margin-right: 10px;
+}
+.list-text-info span:last-child{
+    font-size: 0.25rem;
+}
